@@ -4,7 +4,7 @@ var fetch = function (url, cb) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200){
-        cb(null, xhr.responseText);
+        cb(null, JSON.parse(xhr.responseText));
       } else {
         cb(true);
       }
@@ -15,7 +15,7 @@ var fetch = function (url, cb) {
 };
 
 var searchRequest = function (val, cb) {
-  fetch('/search?q='+val, console.log);
+  fetch('/search?q='+val, handleOutput);
 
 };
 
