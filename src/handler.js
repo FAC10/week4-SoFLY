@@ -6,7 +6,7 @@ var handler = module.exports = {};
 handler.serveLanding = function (request, response) {
   fs.readFile(path.join(__dirname,'..','public', 'index.html'), function(err, file){
     if (err) throw err;
-    response.writeHead(200, 'Content-Type: text/html');
+    response.writeHead(200, {'Content-Type': 'text/html'});
     response.end(file);
   });
 };
@@ -21,12 +21,12 @@ handler.servePublic = function (request, response) {
   };
   fs.readFile(path.join(__dirname, '..', url), function(error,file){
     if (error) throw error;
-    response.writeHead(200, 'Content-Type: extension');
+    response.writeHead(200, {'Content-Type': extensionType[extension]});
     response.end(file);
   });
 };
 
 handler.serveError = function (request, response) {
-  response.writeHead(404, 'Content-Type: text/html');
+  response.writeHead(404, {'Content-Type': 'text/html'});
   response.end('404: Page not found');
 };
