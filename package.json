@@ -1,0 +1,28 @@
+{
+  "name": "sofly-autocompleter",
+  "version": "1.0.0",
+  "description": "Founders and Coders week 4 autocomplete project",
+  "main": "src/server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/tests",
+    "start": "node src/server",
+    "devStart": "nodemon src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC10/week4-SoFLY.git"
+  },
+  "author": "SoFly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC10/week4-SoFLY/issues"
+  },
+  "homepage": "https://github.com/FAC10/week4-SoFLY#readme",
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "tape": "^4.6.3"
+  }
+}
