@@ -1,9 +1,10 @@
+
 var fetch = function (url, cb) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200){
-        cb(null, JSON.parse(xhr.responseText));
+        cb(null, xhr.responseText);
       } else {
         cb(true);
       }
@@ -13,12 +14,18 @@ var fetch = function (url, cb) {
   xhr.send();
 };
 
+var searchRequest = function (val, cb) {
+  fetch('/search?q='+val, console.log);
+
+};
+
+
 
 var input = (function () {
 
-  var watchInput = function (e, cb) {
-    if (!ifSymbols(e.target.value)) {
-      cb(null, e.target.value);
+  var validateInput = function (inputText, cb) {
+    if (inputText && !ifSymbols(inputText)) {
+      cb(inputText);
     }
   };
 
@@ -26,14 +33,14 @@ var input = (function () {
     return string.match(/[^a-z]/gi);
   };
 
-  return {watchInput:watchInput};
+  return {validateInput:validateInput};
 
-})()
+})();
 
 
 
 var inputDOM = document.getElementById('search-term');
 // DOM STUFF BELOW
 inputDOM.addEventListener('keyup', function (e) {
-  input.watchInput(e, console.log);
+  input.validateInput(e.target.value, searchRequest);
 });
