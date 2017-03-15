@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-
+var _url = require('url');
 var handler = module.exports = {};
 
 handler.serveLanding = function (request, response) {
@@ -11,6 +11,16 @@ handler.serveLanding = function (request, response) {
   });
 };
 
+
+handler.autocomplete = function (request, response) {
+
+  var url_parts = _url.parse(request.url, true);
+  var searchQuery = url_parts.query;
+  console.log(searchQuery);
+  response.end('Its working');
+};
+
+
 handler.servePublic = function (request, response) {
   var url = request.url;
   var extension = url.split('.')[1];
@@ -19,7 +29,7 @@ handler.servePublic = function (request, response) {
     'css': 'text/css',
     'js': 'application/javascript',
   };
-  fs.readFile(path.join(__dirname, '..', url), function(error,file){
+  fs.readFile(path.join(__dirname, '..', 'public', url), function(error,file){
     if (error) throw error;
     response.writeHead(200, {'Content-Type': extensionType[extension]});
     response.end(file);
