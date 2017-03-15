@@ -1,15 +1,18 @@
-//set up server
-
 var http = require('http');
+var fs = require('fs');
+var path = require('path');
+var router = require('./router.js');
 
-var port = 8080;
+var port = 4000;
 
-function handleRequest(request, response){
-    response.end('It Works!!! Path Hit: ' + request.url);
-}
+var handler = router; //ask Finn why
 
-var server = http.createServer(handleRequest);
+// function handleRequest(request, response){
+//     response.end('It Works!!! Path Hit: ' + request.url);
+// }
 
-server.listen(port); 
+var server = http.createServer(router);
 
-console.log("Server is listening on port:", port);
+server.listen(port);
+
+console.log('Server is listening on port:', port);
