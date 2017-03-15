@@ -14,7 +14,7 @@ module.exports = function(request, response){
       'css': 'text/css',
       'js': 'application/javascript',
     };
-    fs.readFIle(path.join(__dirname,'..','..',url), function(error,file){
+    fs.readFIle(path.join(__dirname, '..', '..', url), function(error,file){
       if (error) throw error;
       response.writeHead(200, 'Content-Type: extension');
       response.end(file);
