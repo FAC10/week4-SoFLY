@@ -1,7 +1,7 @@
 const test = require('tape');
 const http = require('http');
 
-function backendTest() {
+(function backendTest() {
 
 //Test router.js
   const url = 'http://localhost:4000/';
@@ -18,10 +18,12 @@ function backendTest() {
 //Test autocomplete here
   test('Check autocomplete works', (t) => {
     t.plan(3);
+
     http.get(url + 'search', (res) => {
       t.equal(200, res.statusCode);
       t.equal('application/json', res.headers['content-type']);
     });
+
     var searchWord = 'undefined';
     http.get(url + 'search?q=' + searchWord, (res) => {
       var body = '';
@@ -34,10 +36,28 @@ function backendTest() {
       });
     });
   });
+
+
 //Test public here
-//
-//
-//
+  test('Check urls starting with \'assets\' return files', (t) => {
+    t.plan(4);
+    http.get(url + 'blahblah/assets', (res) => {
+      t.equal(404, res.statusCode);
+    });
+
+    http.get(url + 'assets', (res) => {
+      t.equal(404, res.statusCode);
+    });
+
+    http.get(url + 'assets/indfsf.html', (res) => {
+      t.equal(404, res.statusCode);
+    });
+
+    http.get(url + 'assets/../../src/server.js', (res) => {
+      t.equal(404, res.statusCode);
+    });
+  });
+
 //Test 404 here
 //
 //
@@ -60,6 +80,6 @@ function backendTest() {
 //Test serveError
 //
 //
-}
+})();
 
-module.exports = backendTest;
+// module.exports = backendTest;

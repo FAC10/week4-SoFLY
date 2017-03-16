@@ -11,7 +11,7 @@ module.exports = function(request, response){
     handler.autocomplete(request, response);
   }
 
-  else if (url.indexOf('assets') !== -1) {
+  else if (url.indexOf('assets') === 1) {
     handler.servePublic(request, response);
   }
 
