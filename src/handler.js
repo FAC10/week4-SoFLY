@@ -13,7 +13,9 @@ handler.serveLanding = function (request, response) {
 
 handler.autocomplete = function (request, response) {
 
+  response.writeHead(200, {'content-type': 'application/json'});
   var url_parts = _url.parse(request.url, true);
+  console.log(url_parts);
   var searchQuery = url_parts.query;
 
   fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
