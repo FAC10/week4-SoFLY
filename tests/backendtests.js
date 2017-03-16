@@ -1,11 +1,12 @@
 const test = require('tape');
 const http = require('http');
+const searchFile = require('../src/searchFile.js');
 
 (function backendTest() {
 
-//Test router.js
+//Test router.js/handler.js
   const url = 'http://localhost:4000/';
-//Test landing here 
+//Test landing here
   test('Check landing works', (t) => {
     t.plan(2);
     http.get(url, (res) => {
@@ -69,19 +70,14 @@ const http = require('http');
       t.equal(404, res.statusCode);
     });
   });
-//
-//
-//Handler.js
-//
-//Test serveLanding
-//
-//
-//
+
 //Test serveAutocomplete
-//(breakout Autocomplete into pieces)
-//
-//
-//
+  test('does searchFile function work', (t) => {
+    t.plan(1);
+    searchFile('./testfile.txt', 'ab', 3, (err, res) => {
+      t.equal(['abatable', 'abate', 'abatement'],res);
+    });
+  });
 //Test servePublic
 //
 //
