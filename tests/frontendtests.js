@@ -22,7 +22,7 @@ QUnit.module( 'Frontend', function (assert) {
 
   QUnit.test('Check if the fetch function return a callback with the argument true, when the apicall doesnt complete', function(assert){
 
-    fetch(9, function(l){assert.equal(l, true, 'Yes the callback returns true as its argument')})
+    fetch(9, function(l){assert.equal(l, true, 'Yes the callback returns true as its argument')});
 
   });
 
