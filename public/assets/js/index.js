@@ -55,11 +55,8 @@ function submitColor(formValue, callback) {
 }
 
 function getColorCode (err, res){
-  document.body.style.backgroundColor = res; 
+  document.body.style.backgroundColor = res;
 }
-
-//module.exports = validateInput;
-
 
 
 var inputDOM = document.getElementById('search-term');
