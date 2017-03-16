@@ -17,6 +17,7 @@ Link to dictionary definitions of the words.
 ### Initial plan
 
 => INCLUDE DIAGRAM OF FRONT & BACK END
+![dataflow](./public/assets/plan.png)
 
 ### Progress
 
@@ -80,3 +81,5 @@ You can call ```console.time([label])``` with an optional label at the start of 
 
 ![console.time-explanation](./public/assets/consoletimecode.png)
 ![consolelog of consoletime](./public/assets/console time.png)
+
+We have implemented this to show the difference between using .match and .exec and there was a significant difference of around 20-30 ms.
