@@ -2,22 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
-
-    <title>Autocomplete</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Muli" rel="stylesheet">
+    <title>Autocomplete Search Words</title>
   </head>
   <body>
+    
+  <container>
 
     <header class="header">
       <h1 class="header__heading">SoFly Autocomplete</h1>
     </header>
 
     <form action="" class="form">
-      <label for="search-term">Word search</label>
-      <input type="text" id="search-term" list="datalist" placeholder="Search..."></input>
+
+      <label for="search-term">Search</label>
+      <input type="text" id="search-term" list="datalist" placeholder="Type here"></input>
       <datalist id="datalist"></datalist>
+
     </form>
 
     <div id="results"></div>
+
+  </container>
 
     <script type="text/javascript" src="./assets/js/index.js"></script>
     <script type="text/javascript" src="./assets/js/handlesearch.js"></script>

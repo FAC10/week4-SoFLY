@@ -1,0 +1,30 @@
+html {
+  background-color: #DCDCDC;
+}
+
+container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  font-family: 'Baloo Bhaina', cursive;
+  font-size: 2.5rem;
+  color: #696969;
+}
+
+.form, #search-term {
+  font-family: 'Muli', sans-serif;
+  font-size: 2rem;
+}
+
+#search-term {
+  border-radius: .5rem;
+  padding: .5rem;
+}
+
+#search-term:focus {
+    background-color: #A9A9A9;
+}
