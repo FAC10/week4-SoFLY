@@ -47,6 +47,10 @@ var validateInput = (function () {
 })();
 
 
+module.exports = validateInput;
+
+
+
 
 var inputDOM = document.getElementById('search-term');
 // DOM STUFF BELOW
