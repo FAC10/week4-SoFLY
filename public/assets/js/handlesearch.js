@@ -22,4 +22,4 @@ var handleOutput = function (err, res) {
 
 };
 
-module.exports = handleOutput;
+//module.exports = handleOutput;

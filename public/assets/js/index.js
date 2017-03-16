@@ -47,8 +47,7 @@ var validateInput = (function () {
 })();
 
 
-module.exports = validateInput;
-
+//module.exports = validateInput;
 
 
 
