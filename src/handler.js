@@ -19,7 +19,11 @@ handler.autocomplete = function (request, response) {
   console.log(url_parts);
   var searchQuery = url_parts.query;
 
-  searchFile('words.txt', searchQuery.q , 10, (err, res) => {
+  // searchFile('words.txt', searchQuery.q , 10, (err, res) => {
+  //   response.end(res);
+  // });
+
+  searchFile('colors.txt', searchQuery.q , 10, (err, res) => {
     response.end(res);
   });
   // fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
