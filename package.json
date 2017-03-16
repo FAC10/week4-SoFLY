@@ -6,8 +6,10 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {
+  "scripts": {    
     "test": "node tests/tests | faucet",
+    "test2": "tape 'tests/frontendtests.js' | faucet",
+    "watch": "nodemon -q -x 'npm test'",
     "start": "node src/server",
     "devStart": "nodemon src/server"
   },
@@ -25,5 +27,8 @@
     "faucet": "0.0.1",
     "nodemon": "^1.11.0",
     "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "faucet": "0.0.1"
   }
 }
