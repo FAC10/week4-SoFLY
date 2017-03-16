@@ -20,5 +20,3 @@ var handleOutput = function (err, res) {
   }
 
 };
-
-//module.exports = handleOutput;

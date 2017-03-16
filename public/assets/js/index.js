@@ -55,13 +55,14 @@ function submitColor(formValue, callback) {
 }
 
 function getColorCode (err, res){
+  if (err){
+    return 'There is an error';
+  }
   if (res){
     document.body.style.backgroundColor = res;
     document.querySelector('.header__heading').style.color = invertColor(res);
   }
-}
 
-//module.exports = validateInput;
 
 function invertColor(hexTripletColor) {
   var color = hexTripletColor;
