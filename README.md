@@ -71,4 +71,12 @@ response.on('end', function(file){
 
   ```
 
-  
+### Performance
+There are several ways to check for the performance of your code, e.g. how long a function takes to run.
+
+```console.time()```
+
+You can call ```console.time([label])``` with an optional label at the start of your function. Then you can call ```console.timeEnd([label])``, in the console-log you will be able to see the time difference between these calls.
+
+![console.time-explanation](./public/assets/consoletimecode.png)
+![consolelog of consoletime](./public/assets/console time.png)
