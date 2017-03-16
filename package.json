@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/tests",
+    "test": "node tests/tests | faucet",
     "start": "node src/server",
     "devStart": "nodemon src/server"
   },
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/FAC10/week4-SoFLY#readme",
   "devDependencies": {
+    "faucet": "0.0.1",
     "nodemon": "^1.11.0",
     "tape": "^4.6.3"
   }

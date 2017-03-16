@@ -1,3 +1,4 @@
+function test() {
 //Router.js
 //
 //Test landing here
@@ -32,5 +33,9 @@
 //
 //
 //Test serveError
-//T
-//T
+//
+//
+//
+}
+
+module.exports = test;
