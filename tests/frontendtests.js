@@ -12,7 +12,13 @@ QUnit.module( 'Frontend', function (assert) {
   QUnit.test('Check if validateInput returns a string with alphabet characters',function(assert){
     validateInput('Istring', function(string){assert.equal(string, 'Istring');});
   });
-  QUnit.test('Check if handleOutput returns an error when we pass in an error', function(assert){
+  QUnit.test('Check if handleOutput returns an error when we pass in an argument in the first parameter', function(assert){
     assert.equal(handleOutput('a'), Error, 'Yes, function returns error');
   });
+
+  QUnit.test('Check if getColorCode returns an error when we pass in an argument in the first parameter', function(assert){
+    assert.equal(getColorCode('a'), 'There is an error', 'Yes, function returns error');
+  });
+
+
 });
