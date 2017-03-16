@@ -5,7 +5,7 @@ const http = require('http');
 
 //Test router.js
   const url = 'http://localhost:4000/';
-
+//Test landing here 
   test('Check landing works', (t) => {
     t.plan(2);
     http.get(url, (res) => {
@@ -40,7 +40,7 @@ const http = require('http');
 
 //Test public here
   test('Check urls starting with \'assets\' return files', (t) => {
-    t.plan(4);
+    t.plan(5);
     http.get(url + 'blahblah/assets', (res) => {
       t.equal(404, res.statusCode);
     });
@@ -56,10 +56,19 @@ const http = require('http');
     http.get(url + 'assets/../../src/server.js', (res) => {
       t.equal(404, res.statusCode);
     });
+
+    http.get(url + 'assets/css/style.css', (res) => {
+      t.equal(200, res.statusCode);
+    });
   });
 
 //Test 404 here
-//
+  test('Check broken link redirects to 404', (t) => {
+    t.plan(1);
+    http.get(url + 'thisisnotreal', (res) => {
+      t.equal(404, res.statusCode);
+    });
+  });
 //
 //
 //Handler.js
