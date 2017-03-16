@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _url = require('url');
+var searchFile = require('./searchfile');
 var handler = module.exports = {};
 
 handler.serveLanding = function (request, response) {
@@ -18,14 +19,16 @@ handler.autocomplete = function (request, response) {
   console.log(url_parts);
   var searchQuery = url_parts.query;
 
-
-  fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
-    var result = res.toString();
-    var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
-    var searchResults = result.match(re);
-    searchResults = searchResults ? searchResults.slice(0, 10) : '';
-    response.end(JSON.stringify({searchResults}));
+  searchFile('words.txt', searchQuery.q , 10, (err, res) => {
+    response.end(res);
   });
+  // fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
+  //   var result = res.toString();
+  //   var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
+  //   var searchResults = result.match(re);
+  //   searchResults = searchResults ? searchResults.slice(0, 10) : '';
+  //   response.end(JSON.stringify({searchResults}));
+  // });
 
 };
 
@@ -38,7 +41,7 @@ handler.servePublic = function (request, response) {
     'css': 'text/css',
     'js': 'application/javascript',
   };
-  
+
   fs.readFile(path.join(__dirname, '..', 'public', url), function(error,file){
     if (error || url.includes('..')) {
       handler.serveError (request, response);

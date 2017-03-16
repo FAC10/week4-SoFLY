@@ -1,8 +1,8 @@
 const test = require('tape');
 const http = require('http');
-const searchFile = require('../src/searchFile.js');
+const searchFile = require('../src/searchfile.js');
 
-(function backendTest() {
+function backendTest() {
 
 //Test router.js/handler.js
   const url = 'http://localhost:4000/';
@@ -72,19 +72,14 @@ const searchFile = require('../src/searchFile.js');
   });
 
 //Test serveAutocomplete
-  test('does searchFile function work', (t) => {
+  test('does searchfile function work', (t) => {
     t.plan(1);
-    searchFile('./testfile.txt', 'ab', 3, (err, res) => {
-      t.equal(['abatable', 'abate', 'abatement'],res);
+    searchFile('../tests/testfile.txt', 'ab', 3, (err, res) => {
+      var r = JSON.parse(res);
+      t.deepEqual(['abatable', 'abate', 'abatement'], r.searchResults);
     });
   });
-//Test servePublic
-//
-//
-//
-//Test serveError
-//
-//
-})();
 
-// module.exports = backendTest;
+}
+
+module.exports = backendTest;
