@@ -18,6 +18,7 @@ handler.autocomplete = function (request, response) {
   console.log(url_parts);
   var searchQuery = url_parts.query;
 
+
   fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
     var result = res.toString();
     var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
@@ -37,8 +38,12 @@ handler.servePublic = function (request, response) {
     'css': 'text/css',
     'js': 'application/javascript',
   };
+  
   fs.readFile(path.join(__dirname, '..', 'public', url), function(error,file){
-    if (error) throw error;
+    if (error || url.includes('..')) {
+      handler.serveError (request, response);
+      return;
+    }
     response.writeHead(200, {'Content-Type': extensionType[extension]});
     response.end(file);
   });

@@ -1,6 +1,11 @@
-require("fs").readFile('./words.txt', function(err, filecontent) {
-    if (err){
-        throw err;
-      }
-    console.log((filecontent.toString().match(/(va)\w+/g)))
+var test = require('tape');
+var backendTests = require('./backendtests.js');
+var frontendTests = require('./frontendtests.js');
+
+test('Check tape is working with a simple passing test', function (t) {
+  t.pass('a message to print out on sucess');
+  t.end();
 });
+
+backendTests();
+//frontendTests();

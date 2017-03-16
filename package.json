@@ -6,8 +6,9 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {
-    "test": "tape 'tests/frontendtests.js' | faucet",
+  "scripts": {    
+    "test": "node tests/tests | faucet",
+    "test2": "tape 'tests/frontendtests.js' | faucet",
     "watch": "nodemon -q -x 'npm test'",
     "start": "node src/server",
     "devStart": "nodemon src/server"
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/FAC10/week4-SoFLY#readme",
   "devDependencies": {
+    "faucet": "0.0.1",
     "nodemon": "^1.11.0",
     "tape": "^4.6.3"
   },
