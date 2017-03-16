@@ -13,27 +13,36 @@ var fetch = function (url, cb) {
   xhr.open('GET', url, true);
   xhr.send();
 };
+// MAKE THIS A MODULE SO WE CAN HAVE A HIDDEN VARIABLE THAT CHECKS VAL
+// AGAINST PREV SO IT WONT SEND DUPLICATE REQUESTS
+var searchRequests = (function () {
 
-var searchRequest = function (val, cb) {
-  fetch('/search?q='+val, handleOutput);
+  var prevResult = '';
 
-};
-
-
-
-var input = (function () {
-
-  var validateInput = function (inputText, cb) {
-    if (inputText && !ifSymbols(inputText)) {
-      cb(inputText);
+  return function (val, cb) {
+    if (val) {
+      fetch('/search?q=' + val, handleOutput);
+    } else {
+      handleOutput(null, '');
     }
   };
+
+})();
+
+
+var validateInput = (function () {
 
   var ifSymbols = function (string) {
     return string.match(/[^a-z]/gi);
   };
 
-  return {validateInput:validateInput};
+  return function (inputText, cb) {
+    if (inputText && !ifSymbols(inputText)) {
+      cb(inputText);
+    } else {
+      cb();
+    }
+  };
 
 })();
 

@@ -4,8 +4,17 @@ var handleOutput = function (err, res) {
   document.getElementById('results').innerText = '';
 
   if (res.searchResults) {
-    res.searchResults.forEach(function (e) {
-      document.getElementById('results').innerText += e + '\n';
+    var dataList = document.getElementById('datalist');
+    dataList.innerHTML = '';
+
+    res.searchResults.forEach(function (item) {
+      // Create a new <option> element.
+      var option = document.createElement('option');
+      // Set the value using the item in the JSON array.
+      option.value = item;
+      dataList.appendChild(option);
+      document.getElementById('results').innerText += item + '\n';
+
     });
   }
 
