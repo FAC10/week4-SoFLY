@@ -11,13 +11,19 @@ handler.serveLanding = function (request, response) {
   });
 };
 
-
 handler.autocomplete = function (request, response) {
 
   var url_parts = _url.parse(request.url, true);
   var searchQuery = url_parts.query;
-  console.log(searchQuery);
-  response.end('Its working');
+
+  fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
+    var result = res.toString();
+    var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
+    var searchResults = result.match(re);
+    searchResults = searchResults ? searchResults.slice(0, 10) : '';
+    response.end(JSON.stringify({searchResults}));
+  });
+
 };
 
 
