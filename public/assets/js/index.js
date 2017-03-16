@@ -55,7 +55,9 @@ function submitColor(formValue, callback) {
 }
 
 function getColorCode (err, res){
-  document.body.style.backgroundColor = res; 
+  if (res){
+    document.body.style.backgroundColor = res;
+  }
 }
 
 //module.exports = validateInput;

@@ -29,14 +29,22 @@ handler.autocomplete = function (request, response) {
 
 handler.autoColor = function (request, response) {
 
-  response.writeHead(200, {'content-type': 'application/json'});
   var url_parts = _url.parse(request.url, true);
   var searchQuery = url_parts.query;
   fs.readFile(path.join(__dirname, 'colors.json'), 'utf-8', function(err, file){
 
     var colorsObj = JSON.parse(file);
-    colorsObj = JSON.stringify(colorsObj[searchQuery.q]);
-    response.end(colorsObj);
+
+    response.writeHead(200, {'content-type': 'application/json'});
+
+    if (colorsObj[searchQuery.q]){
+
+      colorsObj = JSON.stringify(colorsObj[searchQuery.q]);
+      response.end(colorsObj);
+      return;
+    }
+    var defaultCol = JSON.stringify('#DCDCDC');
+    response.end(defaultCol);
   });
 };
 
