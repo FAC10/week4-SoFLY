@@ -63,7 +63,7 @@ function getColorCode (err, res){
     document.querySelector('.header__heading').style.color = invertColor(res);
   }
 
-
+}
 function invertColor(hexTripletColor) {
   var color = hexTripletColor;
   color = color.substring(1);           // remove #
