@@ -15,7 +15,6 @@ var handleOutput = function (err, res) {
       // Set the value using the item in the JSON array.
       option.value = item;
       dataList.appendChild(option);
-      document.getElementById('results').innerText += item + '\n';
 
     });
   }
