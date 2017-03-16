@@ -8,4 +8,4 @@ test('Check tape is working with a simple passing test', function (t) {
 });
 
 backendTests();
-frontendTests();
+//frontendTests();
