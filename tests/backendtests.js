@@ -1,4 +1,16 @@
-function test() {
+var test = require('tape');
+var http = require('http');
+
+function backendTest() {
+
+  test('Check landing works', (t) => {
+    t.plan(1);
+    http.get('http://localhost:4000/', (res) => {
+      t.equal(200, res.statusCode);
+    });
+  });
+
+
 //Router.js
 //
 //Test landing here
@@ -38,4 +50,4 @@ function test() {
 //
 }
 
-module.exports = test;
+module.exports = backendTest;

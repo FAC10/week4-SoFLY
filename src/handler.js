@@ -18,6 +18,7 @@ handler.autocomplete = function (request, response) {
   console.log(url_parts);
   var searchQuery = url_parts.query;
 
+
   fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
     var result = res.toString();
     var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
