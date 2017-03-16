@@ -1,11 +1,12 @@
 const test = require('tape');
 const http = require('http');
+const searchFile = require('../src/searchfile.js');
 
-(function backendTest() {
+function backendTest() {
 
-//Test router.js
+//Test router.js/handler.js
   const url = 'http://localhost:4000/';
-
+//Test landing here
   test('Check landing works', (t) => {
     t.plan(2);
     http.get(url, (res) => {
@@ -40,7 +41,7 @@ const http = require('http');
 
 //Test public here
   test('Check urls starting with \'assets\' return files', (t) => {
-    t.plan(4);
+    t.plan(5);
     http.get(url + 'blahblah/assets', (res) => {
       t.equal(404, res.statusCode);
     });
@@ -56,30 +57,29 @@ const http = require('http');
     http.get(url + 'assets/../../src/server.js', (res) => {
       t.equal(404, res.statusCode);
     });
+
+    http.get(url + 'assets/css/style.css', (res) => {
+      t.equal(200, res.statusCode);
+    });
   });
 
 //Test 404 here
-//
-//
-//
-//Handler.js
-//
-//Test serveLanding
-//
-//
-//
-//Test serveAutocomplete
-//(breakout Autocomplete into pieces)
-//
-//
-//
-//Test servePublic
-//
-//
-//
-//Test serveError
-//
-//
-})();
+  test('Check broken link redirects to 404', (t) => {
+    t.plan(1);
+    http.get(url + 'thisisnotreal', (res) => {
+      t.equal(404, res.statusCode);
+    });
+  });
 
-// module.exports = backendTest;
+//Test serveAutocomplete
+  test('does searchfile function work', (t) => {
+    t.plan(1);
+    searchFile('../tests/testfile.txt', 'ab', 3, (err, res) => {
+      var r = JSON.parse(res);
+      t.deepEqual(['abatable', 'abate', 'abatement'], r.searchResults);
+    });
+  });
+
+}
+
+module.exports = backendTest;
