@@ -51,3 +51,24 @@ var readStream = fs.readStream(pathname);
 You can create a variable and set it equal to: fs.createReadStream(pathname);
 
 There is an event called data on createReadStream, which allows us to listen when we receive any chunk of data from the stream and we can add a callback.
+
+```
+readstream.on('data', function (chunk) {
+
+    // dosomething with chunks
+
+  })
+```
+
+You could also save them the chunks to a variable and do something with it when it's fully loaded into the variable using the end event.
+
+```
+response.on('end', function(file){
+
+  //do something with file
+
+  })
+
+  ```
+
+  
