@@ -16,24 +16,28 @@ handler.autocomplete = function (request, response) {
 
   response.writeHead(200, {'content-type': 'application/json'});
   var url_parts = _url.parse(request.url, true);
-  console.log(url_parts);
   var searchQuery = url_parts.query;
 
   // searchFile('words.txt', searchQuery.q , 10, (err, res) => {
   //   response.end(res);
   // });
-
-  searchFile('colors.txt', searchQuery.q , 10, (err, res) => {
+  searchFile.searchWithinWords('colors.txt', searchQuery.q , 20, (err, res) => {
     response.end(res);
   });
-  // fs.readFile(path.join(__dirname, 'words.txt'), (err, res) => {
-  //   var result = res.toString();
-  //   var re = new RegExp('\\b(' + searchQuery.q + ')\\w+', 'gi');
-  //   var searchResults = result.match(re);
-  //   searchResults = searchResults ? searchResults.slice(0, 10) : '';
-  //   response.end(JSON.stringify({searchResults}));
-  // });
 
+};
+
+handler.autoColor = function (request, response) {
+
+  response.writeHead(200, {'content-type': 'application/json'});
+  var url_parts = _url.parse(request.url, true);
+  var searchQuery = url_parts.query;
+  fs.readFile(path.join(__dirname, 'colors.json'), 'utf-8', function(err, file){
+
+    var colorsObj = JSON.parse(file);
+    colorsObj = JSON.stringify(colorsObj[searchQuery.q]);
+    response.end(colorsObj);
+  });
 };
 
 

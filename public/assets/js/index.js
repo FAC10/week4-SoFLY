@@ -46,10 +46,27 @@ var validateInput = (function () {
 
 })();
 
+function submitColor(formValue, callback) {
+  if (formValue) {
+    fetch('/color?q=' + formValue, callback);
+  } else {
+    callback(null, '');
+  }
+}
+
+function getColorCode (err, res){
+  document.body.style.backgroundColor = res; 
+}
 
 
 var inputDOM = document.getElementById('search-term');
+var form = document.getElementById('form');
 // DOM STUFF BELOW
 inputDOM.addEventListener('keyup', function(e) {
   validateInput(e.target.value, searchRequests);
+});
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  submitColor(e.target[0].value, getColorCode)
 });
