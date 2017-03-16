@@ -80,6 +80,6 @@ There are several ways to check for the performance of your code, e.g. how long 
 You can call ```console.time([label])``` with an optional label at the start of your function. Then you can call ```console.timeEnd([label])``, in the console-log you will be able to see the time difference between these calls.
 
 ![console.time-explanation](./public/assets/consoletimecode.png)
-![consolelog of consoletime](./public/assets/console time.png)
+![consolelog of consoletime](./public/assets/console-time.png)
 
 We have implemented this to show the difference between using .match and .exec and there was a significant difference of around 20-30 ms.
