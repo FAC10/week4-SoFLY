@@ -17,7 +17,7 @@ var fetch = function(url, cb) {
 var searchRequests = (function () {
 
   var prevResult = '';
-  
+
   return function (val, cb) {
     if (val) {
       fetch('/search?q=' + val, handleOutput);
@@ -51,5 +51,5 @@ var validateInput = (function () {
 var inputDOM = document.getElementById('search-term');
 // DOM STUFF BELOW
 inputDOM.addEventListener('keyup', function(e) {
-    input.validateInput(e.target.value, searchRequest);
+    validateInput(e.target.value, searchRequests);
 });
