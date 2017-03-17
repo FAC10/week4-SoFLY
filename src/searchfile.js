@@ -3,7 +3,7 @@ var path = require('path');
 
 const searchWord = (filePath, string, numResults, inclusiveSearch, cb) => {
   var newPath = filePath.split('/');
-  fs.readFile(path.join(__dirname, ...newPath), (err, res) => {
+  fs.readFile(path.join(__dirname, 'data', ...newPath), (err, res) => {
     var result = res.toString();
     var startWord = new RegExp('\\b(' + string + ')\\w+', 'gi');
     var wordWithinText = new RegExp('\\b.*' + string + '.*', 'gi');
@@ -20,5 +20,4 @@ const searchWord = (filePath, string, numResults, inclusiveSearch, cb) => {
   });
 };
 
-
-module.exports = searchWord; 
+module.exports = searchWord;
