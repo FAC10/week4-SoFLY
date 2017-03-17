@@ -3,8 +3,6 @@ var handleOutput = function (err, res) {
     return  Error;
   }
 
-  document.getElementById('results').innerText = '';
-
   if (res.searchResults) {
     var dataList = document.getElementById('datalist');
     dataList.innerHTML = '';

@@ -4,24 +4,21 @@ var _url = require('url');
 var searchFile = require('./searchfile');
 var handler = module.exports = {};
 
-handler.serveLanding = function (request, response) {
-  fs.readFile(path.join(__dirname,'..','public', 'index.html'), function(err, file){
+handler.serveStatic = function (request, response, page) {
+  fs.readFile(path.join(__dirname,'..','public', page), function(err, file){
     if (err) throw err;
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.end(file);
   });
 };
 
-handler.autocomplete = function (request, response) {
+handler.autocomplete = function (request, response, file, inclusiveSearch) {
 
   response.writeHead(200, {'content-type': 'application/json'});
   var url_parts = _url.parse(request.url, true);
   var searchQuery = url_parts.query;
 
-  // searchFile('words.txt', searchQuery.q , 10, (err, res) => {
-  //   response.end(res);
-  // });
-  searchFile.searchWithinWords('colors.txt', searchQuery.q , 20, (err, res) => {
+  searchFile(file, searchQuery.q , 20, inclusiveSearch, (err, res) => {
     response.end(res);
   });
 

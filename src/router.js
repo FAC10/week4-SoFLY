@@ -4,22 +4,29 @@ var handler = require('./handler.js');
 
 module.exports = function(request, response){
   var url = request.url;
-  if (url === '/') {
-    handler.serveLanding(request, response);
 
-  } else if (url.includes('/search')){
-    handler.autocomplete(request, response);
-  }
-  
-  else if (url.includes('/color')){
+  var page = {
+    '/' : 'index.html',
+    '/dictionary' : 'dictionary.html'
+  }[url];
+
+  if (page) {
+    handler.serveStatic(request, response, page);
+
+  } else if (url.indexOf('/searchword') === 0) {
+    handler.autocomplete(request, response, 'words.txt', false);
+
+  } else if (url.indexOf('/search') === 0) {
+    handler.autocomplete(request, response, 'colors.txt', true);
+
+  } else if (url.indexOf('/color') === 0) {
     handler.autoColor(request, response);
-  }
 
-  else if (url.indexOf('assets') === 1) {
+  } else if (url.indexOf('/assets') === 0) {
     handler.servePublic(request, response);
-  }
 
-  else {
+  } else {
     handler.serveError(request, response);
+
   }
 };
