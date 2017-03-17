@@ -25,7 +25,7 @@ function backendTest() {
       t.equal('application/json', res.headers['content-type']);
     });
 
-    var searchWord = 'undefined';
+    var searchWord = 'Brick';
     http.get(url + 'search?q=' + searchWord, (res) => {
       var body = '';
       res.on('data', (chunk) => {
@@ -33,7 +33,7 @@ function backendTest() {
       });
       res.on('end', ()=>{
         var { searchResults } = JSON.parse(body);
-        t.deepEqual(['undefinedly', 'undefinedness'], searchResults);
+        t.deepEqual(['Brick Red'], searchResults);
       });
     });
   });
@@ -74,7 +74,7 @@ function backendTest() {
 //Test serveAutocomplete
   test('does searchfile function work', (t) => {
     t.plan(1);
-    searchFile('../tests/testfile.txt', 'ab', 3, (err, res) => {
+    searchFile('../../tests/testfile.txt', 'ab', 3, false, (err, res) => {
       var r = JSON.parse(res);
       t.deepEqual(['abatable', 'abate', 'abatement'], r.searchResults);
     });
