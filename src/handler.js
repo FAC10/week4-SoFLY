@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var _url = require('url');
 var searchFile = require('./searchfile');
+var colors = require('./data/colors.json');
 var handler = module.exports = {};
 
 handler.serveStatic = function (request, response, page) {
@@ -28,21 +29,18 @@ handler.autoColor = function (request, response) {
 
   var url_parts = _url.parse(request.url, true);
   var searchQuery = url_parts.query;
-  fs.readFile(path.join(__dirname, 'colors.json'), 'utf-8', function(err, file){
 
-    var colorsObj = JSON.parse(file);
+  response.writeHead(200, {'content-type': 'application/json'});
 
-    response.writeHead(200, {'content-type': 'application/json'});
+  if (colors[searchQuery.q]){
 
-    if (colorsObj[searchQuery.q]){
+    var colorsObj = JSON.stringify(colors[searchQuery.q]);
+    response.end(colorsObj);
+    return;
+  }
 
-      colorsObj = JSON.stringify(colorsObj[searchQuery.q]);
-      response.end(colorsObj);
-      return;
-    }
-    var defaultCol = JSON.stringify('#DCDCDC');
-    response.end(defaultCol);
-  });
+  var defaultCol = JSON.stringify('#DCDCDC');
+  response.end(defaultCol);
 };
 
 
