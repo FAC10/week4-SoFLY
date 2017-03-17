@@ -1,3 +1,4 @@
+//STEP4
 var handleOutput = function (err, res) {
   if (err){
     return  Error;
