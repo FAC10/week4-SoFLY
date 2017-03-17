@@ -17,6 +17,7 @@ Link to dictionary definitions of the words.
 ### Initial plan
 
 => INCLUDE DIAGRAM OF FRONT & BACK END
+![dataflow](./public/assets/plan.png)
 
 ### Progress
 
@@ -51,3 +52,34 @@ var readStream = fs.readStream(pathname);
 You can create a variable and set it equal to: fs.createReadStream(pathname);
 
 There is an event called data on createReadStream, which allows us to listen when we receive any chunk of data from the stream and we can add a callback.
+
+```
+readstream.on('data', function (chunk) {
+
+    // dosomething with chunks
+
+  })
+```
+
+You could also save them the chunks to a variable and do something with it when it's fully loaded into the variable using the end event.
+
+```
+response.on('end', function(file){
+
+  //do something with file
+
+  })
+
+  ```
+
+### Performance
+There are several ways to check for the performance of your code, e.g. how long a function takes to run.
+
+```console.time()```
+
+You can call ```console.time([label])``` with an optional label at the start of your function. Then you can call ```console.timeEnd([label])``, in the console-log you will be able to see the time difference between these calls.
+
+![console.time-explanation](./public/assets/consoletimecode.png)
+![consolelog of consoletime](./public/assets/console-time.png)
+
+We have implemented this to show the difference between using .match and .exec and there was a significant difference of around 20-30 ms.
