@@ -12,18 +12,20 @@ var fetch = function(url, cb) {
   xhr.open('GET', url, true);
   xhr.send();
 };
-// MAKE THIS A MODULE SO WE CAN HAVE A HIDDEN VARIABLE THAT CHECKS VAL
-// AGAINST PREV SO IT WONT SEND DUPLICATE REQUESTS
+
+//STEP3
+//handleOutput IN HANDLESEARCH.JS
 var searchRequests = (function () {
 
   var prevResult = '';
 
-  return function (val, cb) {
-    if (val) {
+  return function (val) {
+    if (val!==prevResult) {
       fetch('/search?q=' + val, handleOutput);
     } else {
       handleOutput(null, '');
     }
+    prevResult=val;
   };
 
 })();
@@ -35,7 +37,7 @@ var validateInput = (function () {
   var ifSymbols = function(string) {
     return string.match(/[^a-z]/gi);
   };
-
+//STEP2
   return function (inputText, cb) {
     if (inputText && !ifSymbols(inputText)) {
       cb(inputText);
@@ -78,7 +80,8 @@ function invertColor(hexTripletColor) {
 
 var inputDOM = document.getElementById('search-term');
 var form = document.getElementById('form');
-// DOM STUFF BELOW
+
+//STEP1
 inputDOM.addEventListener('keyup', function(e) {
   validateInput(e.target.value, searchRequests);
 });
