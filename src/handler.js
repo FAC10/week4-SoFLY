@@ -51,6 +51,7 @@ handler.servePublic = function (request, response) {
     'html': 'text',
     'css': 'text/css',
     'js': 'application/javascript',
+    'ico': 'image/x-icon'
   };
 
   fs.readFile(path.join(__dirname, '..', 'public', url), function(error,file){
